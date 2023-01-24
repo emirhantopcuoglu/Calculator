@@ -26,6 +26,44 @@ class Calculator(QMainWindow):
         self.txt_num2.move(150,80)
         self.txt_num2.resize(200,32)
 
+        self.button_add = QtWidgets.QPushButton(self)
+        self.button_add.setText("Topla")
+        self.button_add.move(150,130)
+        self.button_add.clicked.connect(self.calculate)
+
+        self.button_sub = QtWidgets.QPushButton(self)
+        self.button_sub.setText("Çıkar")
+        self.button_sub.move(150,170)
+        self.button_sub.clicked.connect(self.calculate)
+
+        self.button_mul = QtWidgets.QPushButton(self)
+        self.button_mul.setText("Çarp")
+        self.button_mul.move(150,210)
+        self.button_mul.clicked.connect(self.calculate)
+
+        self.button_div = QtWidgets.QPushButton(self)
+        self.button_div.setText("Böl")
+        self.button_div.move(150,250)
+        self.button_div.clicked.connect(self.calculate)
+
+        self.label_result = QtWidgets.QLabel(self)
+        self.label_result.setText("Sonuç: ")
+        self.label_result.move(150,290)
+        self.label_result.resize(200,32)
+    
+    def calculate(self):
+        sender = self.sender().text()
+        result = 0
+        if sender == "Topla":
+             result = float(self.txt_num1.text()) + float(self.txt_num2.text())
+        elif sender == "Çıkar":
+            result = float(self.txt_num1.text()) - float(self.txt_num2.text())
+        elif sender == "Çarp":
+            result = float(self.txt_num1.text()) * float(self.txt_num2.text())
+        elif sender == "Böl":
+            result = float(self.txt_num1.text()) / float(self.txt_num2.text())
+        self.label_result.setText("Sonuç: " + str(result))
+
 def app():
     app = QApplication(sys.argv)
     window = Calculator()
